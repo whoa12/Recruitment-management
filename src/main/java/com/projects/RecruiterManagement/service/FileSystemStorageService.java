@@ -53,6 +53,10 @@
             if (file.isEmpty()) {
                 throw new StorageException("Failed to store empty file.");
             }
+            String originalFileName = file.getOriginalFilename();
+            if(!originalFileName.endsWith(".pdf") || !originalFileName.endsWith(".docx")){
+                throw new StorageException("Only PDF and Docx files are allowed");
+            }
 
             try {
                 Path destinationFile = this.rootLocation.resolve(
